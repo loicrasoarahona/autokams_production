@@ -1,0 +1,59 @@
+{
+    "id": 840,
+    "client": {
+        "id": 3,
+        "nom": "Magali Rakotonandrasana",
+        "telephone": "0346978835",
+        "email": null,
+        "note": null
+    },
+    "prix": 17000,
+    "note": null,
+    "payed": true,
+    "paiements": [
+        {
+            "id": 848,
+            "vente": "\/api\/ventes\/840",
+            "montant": 17000,
+            "date": "2024-07-22T09:09:56+03:00",
+            "paiementMoyenPaiement": {
+                "id": 9,
+                "reference": "",
+                "moyenPaiement": "\/api\/moyen_paiements\/1",
+                "paiement": "\/api\/paiements\/848"
+            }
+        }
+    ],
+    "venteDetails": [
+        {
+            "id": 881,
+            "produit": {
+                "id": 28,
+                "nom": "Fer Inde 8",
+                "description": "",
+                "quantification": "\/api\/quantifications\/2",
+                "categorie": [],
+                "quantificationEquivalences": [],
+                "prix": 17000,
+                "image": "defaultProduit.jpg",
+                "pointDeVente": "\/api\/point_de_ventes\/1",
+                "reference": "inde 8"
+            },
+            "quantite": 1,
+            "unite": "\/api\/quantifications\/2",
+            "prix": 17000,
+            "note": null,
+            "vente": "\/api\/ventes\/840",
+            "livrer": true,
+            "prixTotal": 17000
+        }
+    ],
+    "daty": "2024-07-22T12:09:25+03:00",
+    "pointDeVente": "\/api\/point_de_ventes\/1",
+    "numFacture": 129,
+    "dateRecouvrement": null,
+    "isCommande": false,
+    "description": null,
+    "venteLivraisons": [],
+    "totalPaiements": 17000
+}

@@ -1,0 +1,117 @@
+# api/config/packages/security.yaml
+security:
+    # https://symfony.com/doc/current/security.html#c-hashing-passwords
+    password_hashers:
+        App\Entity\Utilisateur: 'auto'
+    # https://symfony.com/doc/current/security/authenticator_manager.html
+    enable_authenticator_manager: true
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        users:
+            entity:
+                class: App\Entity\Utilisateur
+                property: pseudo
+    firewalls:
+        dev:
+            pattern: ^/_(profiler|wdt)
+            security: false
+        utilisateurs :   
+            pattern : ^/api/utilisateurs
+            security: true
+        api:
+            pattern: ^/api/
+            stateless: true
+            provider: users
+            # jwt: ~
+        produits:
+            pattern: ^/produits
+            stateless: true
+            provider: users
+            jwt: ~
+        charges:
+            pattern: ^/charges
+            stateless: true
+            provider: users
+            jwt: ~
+        paiements:
+            pattern: ^/paiements
+            stateless: true
+            security: true
+            jwt: ~
+        bilanVente:
+            pattern: ^/bilanVente
+            stateless: true
+            security: true
+            jwt: ~
+        decaissements:
+            pattern: ^/decaissements
+            stateless: true
+            provider: users
+            jwt: ~
+        caisse:
+            pattern: ^/caisse
+            stateless: true
+            security: true
+            jwt: ~
+        repportCaisses:
+            pattern: ^/repport_caisses
+            stateless: true
+            security: true
+            jwt: ~
+        ventes:
+            pattern: ^/ventes
+            stateless: true
+            provider: users
+            jwt: ~
+        authenticated :
+            pattern: ^/user_info
+            security: true
+            stateless: true
+            jwt : ~
+        ohatra :
+            pattern: ^/signup
+            security: true
+            stateless: true
+            jwt : ~
+        logout :
+            pattern: ^/logout
+            security: true
+            stateless: true
+            jwt : ~
+        
+        
+        # login :
+        #     pattern: ^/auth
+        #     security: false
+        #     stateless: true
+        main:
+            stateless: false
+            json_login:
+                check_path: auth # The name in routes.yaml is enough for mapping
+                username_path: pseudo
+                password_path: mdp
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            logout :
+                path : app_logout
+            
+    access_control:
+        - { path: ^/produits, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/charges, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/paiements, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/bilanVente, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/caisse, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/repport_caisses, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/decaissements, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
+        - { path: ^/getProduitQuantifications, roles: PUBLIC_ACCESS } # temporaire
+        - { path: ^/prixUnites, roles: PUBLIC_ACCESS } # temporaire
+        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
+        - { path: ^/auth, roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: PUBLIC_ACCESS }
+        - { path: ^/, roles: PUBLIC_ACCESS } # Temporaire
+        
+        - { path: ^/ventes, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
