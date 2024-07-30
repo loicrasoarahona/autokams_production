@@ -1,3 +1,5 @@
 api/vendor
 api/var
 api/public/uploads
+assets_util
+*.zip
